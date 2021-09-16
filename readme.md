@@ -11,6 +11,11 @@ The capabilities that the package includes are:
 * Allows you to get an indication when there is a writing error for one of the destinations
 * Allows to accept severity as a variable
 
+## Installation    
+
+```javascript
+npm i superlogger
+```
 ## Code Samples
 
 There are 4 types of options for configuring the logger:
@@ -23,7 +28,7 @@ hermetic = options.hermetic || false;     // optionally, warning when some of th
 and there are 4 types of severity:
 ```javascript
 logger.log('info', 'i am info message'); // dynamic shape, the first argument is the severity of the log
-logger.info('i am info message);
+logger.info('i am info message');
 logger.error('i am error message');
 logger.warning('i am warning message');
 logger.debug('i am debug message');
@@ -71,7 +76,3 @@ loggerToFileAndConsole.error('i am error message');
 loggerToFileAndConsole.warning('i am warning message');
 loggerToFileAndConsole.debug('i am debug message');
 ```
-
-## Installation
-
-> The installation instructions are low priority in the readme and should come at the bottom. The first part answers all their objections and now that they want to use it, show them how.
