@@ -7,6 +7,9 @@ import fs from 'fs';
  */
 export const fileHandler = async (formattedMessage, filePath) => {
     try {
+        if(!formattedMessage || !filePath){
+            throw new Error('must to pass filePath and message');
+        }
         if (fs.existsSync(filePath)) {
             await fs.appendFileSync(filePath, `${formattedMessage}\r\n`);
         } else {
@@ -14,6 +17,6 @@ export const fileHandler = async (formattedMessage, filePath) => {
         }
 
     } catch (error) {
-        throw new Error(`An error occurred while trying to log to file, ${error}`);
+        throw new Error(`An error occurred while trying to log to file: ${error.message}`);
     }
 };

@@ -1,13 +1,24 @@
 {
-  "name": "superlogger",
+  "name": "assignment-super-logger",
   "version": "1.0.0",
   "description": "",
   "main": "Logger.js",
   "type": "module",
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "\\.m?jsx?$": "jest-esm-transformer"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
-  "author": "Matanel Weizman",
-  "license": "ISC"
+  "author": "weizmm",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.2.0",
+    "jest-esm-transformer": "^1.0.0"
+  }
 }
