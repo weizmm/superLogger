@@ -4,7 +4,7 @@
  */
 export const consoleHandler = async (formattedMessage) => {
     try {
-        if (!formattedMessage || !filePath) {
+        if (!formattedMessage) {
             throw new Error('must to pass message');
         }
         console.log(formattedMessage);

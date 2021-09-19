@@ -6,7 +6,7 @@ import {
     WARNING_SEVERITY,
     LOG_DEFAULT_PATH,
 } from './config/constants.js';
-import createTargetsArrayOfHandlers from './utils/createTargetsArrayOfHandlers.js';
+import { createTargetsArrayOfHandlers } from './utils/createTargetsArrayOfHandlers.js';
 
 export default class Logger {
     constructor(options) {

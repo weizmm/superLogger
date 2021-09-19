@@ -18,9 +18,11 @@ describe('file-target handler', () => {
 
   it('enforce passing message and filePath arguments', async () => {
     expect.assertions(1);
-    await expect(fileHandler()).rejects.toMatchObject(
-      new Error('An error occurred while trying to log to file: must to pass filePath and message')
-    );
+    try {
+      await fileHandler()
+    } catch (error) {
+      expect(error.message).toEqual('An error occurred while trying to log to file: must to pass filePath and message');
+    }
   });
   it('create file in filePath and write the message in the log', async () => {
     expect.assertions(2)
@@ -30,7 +32,7 @@ describe('file-target handler', () => {
       let messageFromLogFile = fs.readFileSync(filePath, 'utf-8');
       expect(messageFromLogFile === `${message}\r\n`).toBe(true);
     } catch (error) {
-      throw ('fileHandler failed to create log file');
+      throw ('fileHandler failed to create log file',error);
     }
   })
 });
