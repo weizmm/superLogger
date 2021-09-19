@@ -10,15 +10,16 @@ import createTargetsArrayOfHandlers from './utils/createTargetsArrayOfHandlers.j
 
 export default class Logger {
     constructor(options) {
-        this.targets = options.targets || [CONSOLE_TARGET]; // array of targets as strings
-        this.format = options.format || basicFormat; //the format of the string message
-        this.filePath = options.filePath || LOG_DEFAULT_PATH; //the path withe the name of the log file
-        this.hermetic = options.hermetic || false; // optionally, warning when some of the targets not working
+        this.targets = options?.targets || [CONSOLE_TARGET]; // array of targets as strings
+        this.format = options?.format || basicFormat; //the format of the string message
+        this.filePath = options?.filePath || LOG_DEFAULT_PATH; //the path withe the name of the log file
+        this.hermetic = options?.hermetic || false; // optionally, warning when some of the targets not working
     }
 
     async log(severity, message) {
         const formattedMessage = this.format(severity, message);
         const targetsArrayOfHandlers = createTargetsArrayOfHandlers(this.targets, this.filePath, formattedMessage);
+
         const results = await Promise.allSettled(targetsArrayOfHandlers);
         if (this.hermetic) {
             const rejected = results.filter(result => result.status === 'rejected').map(result => result.reason);
