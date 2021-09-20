@@ -16,25 +16,30 @@ import {
  */
 export const createTargetsArrayOfHandlers = (targets, filePath, formattedMessage) => {
     if (!targets || targets === []) {
-        throw new Error("Must to send Targets array as argument to createTargetsArrayAsPromises function");
+        throw new Error("Must to send Targets array as argument to createTargetsArrayOfHandlers function");
     }
     try {
-        let targetsArrayAsPromises = [];
+        let targetsArray = [];
         targets.forEach(target => {
             switch (target) {
                 case CONSOLE_TARGET:
-                    targetsArrayAsPromises.push(consoleHandler(formattedMessage));
+                    targetsArray.push({
+                        handler: consoleHandler,
+                        argsArray: [formattedMessage],
+                    });
                     break;
                 case FILE_TARGET:
-                    targetsArrayAsPromises.push(fileHandler(formattedMessage, filePath));
+                    targetsArray.push({
+                        handler: fileHandler,
+                        argsArray: [formattedMessage, filePath]
+                    });
                     break;
                 default:
                     throw new Error('Unrecognized target');
             }
         });
-
-        return targetsArrayAsPromises;
+        return targetsArray;
     } catch (error) {
-        throw(error);
+        throw (error);
     }
 };

@@ -20,7 +20,8 @@ export default class Logger {
         const formattedMessage = this.format(severity, message);
         const targetsArrayOfHandlers = createTargetsArrayOfHandlers(this.targets, this.filePath, formattedMessage);
 
-        const results = await Promise.allSettled(targetsArrayOfHandlers);
+        const results = await Promise.allSettled(createArrayOfHandlersAsPromises(targetsArrayOfHandlers));
+
         if (this.hermetic) {
             const rejected = results.filter(result => result.status === 'rejected').map(result => result.reason);
             console.log(`MY_LOGGER: ${rejected}`);
@@ -51,3 +52,7 @@ const basicFormat = (severity, message) => {
     }
     return `${severity}: ${message} ${new Date(Date.now())}`;
 };
+
+const createArrayOfHandlersAsPromises = (targetsArrayOfHandlers) => {
+    return targetsArrayOfHandlers.map((target) => target.handler(...target.argsArray))
+}

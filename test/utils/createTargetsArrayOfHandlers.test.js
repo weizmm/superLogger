@@ -1,5 +1,6 @@
 import { createTargetsArrayOfHandlers } from "../../utils/createTargetsArrayOfHandlers";
 import { CONSOLE_TARGET } from '../../config/constants.js';
+import { consoleHandler } from '../../targetsHandlers/index.js';
 
 describe('createTargetsArrayOfHandlers', () => {
 
@@ -8,26 +9,24 @@ describe('createTargetsArrayOfHandlers', () => {
         try {
             createTargetsArrayOfHandlers();
         } catch (error) {
-            expect(error).toEqual(new Error('Must to send Targets array as argument to createTargetsArrayAsPromises function'));
+            expect(error).toEqual(new Error('Must to send Targets array as argument to createTargetsArrayOfHandlers function'));
         }
     });
 
     it('throw error when accept unrecognized target name', () => {
         let targets = ['i am not recognized target'];
         try {
-            const results = createTargetsArrayOfHandlers(targets);
+            createTargetsArrayOfHandlers(targets);
         } catch (error) {
             expect(error).toEqual(new Error('Unrecognized target'));
         }
     });
 
-    it('return array of promises', () => {
+    it('return array of targetsHandlers', () => {
         let targets = [CONSOLE_TARGET];
         const results = createTargetsArrayOfHandlers(targets, null, 'message');
-        expect(
-            results instanceof Array &&
-            results[0] instanceof Promise &&
-            results.length === 1
-        ).toBe(true);
+        expect(results instanceof Array).toBe(true);
+        expect(results[0]).toHaveProperty('handler', consoleHandler);
+        expect(results.length === 1).toBe(true);
     });
 });
