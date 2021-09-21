@@ -11,11 +11,6 @@ The capabilities that the package includes are:
 * Allows you to get an indication when there is a writing error for one of the destinations
 * Allows to accept severity as a variable
 
-## Installation    
-
-```javascript
-npm i superlogger
-```
 ## Code Samples
 
 There are 4 types of options for configuring the logger:
@@ -75,4 +70,10 @@ loggerToConsole.info('i am info message only to console and i have another forma
 loggerToFileAndConsole.error('i am error message');
 loggerToFileAndConsole.warning('i am warning message');
 loggerToFileAndConsole.debug('i am debug message');
+```
+
+## test    
+
+```bash
+npm test
 ```
