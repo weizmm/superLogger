@@ -24,24 +24,24 @@ export default class Logger {
 
         if (this.hermetic) {
             const rejected = results.filter(result => result.status === 'rejected').map(result => result.reason);
-            console.log(`MY_LOGGER: ${rejected}`);
+            console.log(`MY_LOGGER: ${rejected.toString()}`);
         }
     }
 
-    error(message) {
-        this.log(ERROR_SEVERITY, message);
+    async error (message) {
+        await this.log(ERROR_SEVERITY, message);
     }
 
-    warning(message) {
-        this.log(WARNING_SEVERITY, message);
+    async warning(message) {
+        await this.log(WARNING_SEVERITY, message);
     }
 
-    info(message) {
-        this.log(INFO_SEVERITY, message);
+    async info(message) {
+        await this.log(INFO_SEVERITY, message);
     }
 
-    debug(message) {
-        this.log(DEBUG_SEVERITY, message);
+    async debug(message) {
+        await this.log(DEBUG_SEVERITY, message);
     }
 };
 

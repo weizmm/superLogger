@@ -2,7 +2,7 @@
  * write the message to the console
  * @param {String} formattedMessage 
  */
-export const consoleHandler = async (formattedMessage) => {
+export const consoleHandler = (formattedMessage) => {
     try {
         if (!formattedMessage) {
             throw new Error('must to pass message');

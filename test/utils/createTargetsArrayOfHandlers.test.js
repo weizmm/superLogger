@@ -15,6 +15,7 @@ describe('createTargetsArrayOfHandlers', () => {
 
     it('throw error when accept unrecognized target name', () => {
         let targets = ['i am not recognized target'];
+        expect.assertions(1);
         try {
             createTargetsArrayOfHandlers(targets);
         } catch (error) {
