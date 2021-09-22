@@ -6,7 +6,7 @@ Super Logger is a package that allows easy writing of logs.
 
 The capabilities that the package includes are:
 * Customize the log structure
-* Can create multiple intensities
+* Can create multiple instances
 * Allows writing to multiple destinations at once
 * Allows you to get an indication when there is a writing error for one of the destinations
 * Allows to accept severity as a variable
@@ -16,14 +16,14 @@ The capabilities that the package includes are:
 There are 4 types of options for configuring the logger:
 ```javascript
 targets = options.targets || [CONSOLE_TARGET];     // array of targets as strings
-format = options.format || basicFormat;     //the format of the string message
-filePath = options.filePath || LOG_DEFAULT_PATH;     //the path withe the name of the log file
+format = options.format || basicFormat;     //the format of the message
+filePath = options.filePath || LOG_DEFAULT_PATH;     //the path including the name of the log file
 hermetic = options.hermetic || false;     // optionally, warning when some of the targets not working
 ```
 and there are 4 types of severity:
 ```javascript
 logger.log('info', 'i am info message'); // dynamic shape, the first argument is the severity of the log
-logger.info('i am info message');
+logger.info('i am also info message');
 logger.error('i am error message');
 logger.warning('i am warning message');
 logger.debug('i am debug message');
@@ -38,7 +38,7 @@ import Logger from './Logger.js';
 
 const specialFormat = (severity, message) => {
     if (!severity || !message) {
-        throw new Error('the severity and message arguments must to passed to basic format');
+        throw new Error('It is mandatory to pass the message and severity arguments to the format of the log');
     }
     return `${severity}: ${message}`;
 };
