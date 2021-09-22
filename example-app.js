@@ -2,7 +2,7 @@ import Logger from './Logger.js';
 
 const specialFormat = (severity, message) => {
     if (!severity || !message) {
-        throw new Error('the severity and message arguments must to passed to basic format');
+        throw new Error('It is mandatory to pass the message and severity arguments to the format of the log');
     }
     return `${severity}: ${message}`;
 };
